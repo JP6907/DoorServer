@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2009-2016 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 独一无二的空间名 -->
+<mapper namespace="PostProfile">
+
+  <resultMap type="com.neo.bean.PostProfile" id="PostProfileResult">
+    <id column="post_id" jdbcType="INTEGER" property="post_id"/>
+    <result column="post_title" jdbcType="VARCHAR" property="post_title"/>
+    <result column="post_text" jdbcType="VARCHAR" property="post_text"/>
+    <result column="post_publisher" jdbcType="VARCHAR" property="post_publisher"/>
+    <result column="post_replynum" jdbcType="INTEGER" property="post_replynum"/>
+    <result column="post_publishdt" jdbcType="VARCHAR" property="post_publishdt"/>
+    <result column="post_newdt" jdbcType="VARCHAR" property="post_newdt"/>
+    <result column="post_phone" jdbcType="VARCHAR" property="post_phone"/>
+    <result column="post_picture1" jdbcType="VARCHAR" property="post_picture1"/>
+    <result column="post_picture2" jdbcType="INTEGER" property="post_picture2"/>
+    <result column="post_picture3" jdbcType="VARCHAR" property="post_picture3"/>
+    <result column="post_picture4" jdbcType="VARCHAR" property="post_picture4"/>
+    <result column="post_picture5" jdbcType="VARCHAR" property="post_picture5"/>
+    <result column="post_picture6" jdbcType="VARCHAR" property="post_picture6"/>
+    <result column="post_picture7" jdbcType="VARCHAR" property="post_picture7"/>
+    <result column="post_picture8" jdbcType="VARCHAR" property="post_picture8"/>
+    <result column="post_picture9" jdbcType="VARCHAR" property="post_picture9"/>
+  </resultMap>
+   <!-- 添加帖子 -->
+  <insert id="addPostProfile" parameterType="com.neo.bean.PostProfile" useGeneratedKeys="true" keyProperty="post_id">
+      insert into PostProfile (post_title, post_text, post_publisher, post_replynum,
+      post_publishdt, post_newdt, post_phone, post_picture1, post_picture2, post_picture3,
+      post_picture4, post_picture5, post_picture6, post_picture7, post_picture8, post_picture9) 
+      values(#{post_title}, #{post_text}, #{post_publisher}, #{post_replynum},
+      #{post_publishdt}, #{post_newdt}, #{post_phone}, #{post_picture1}, #{post_picture2}, #{post_picture3},
+      #{post_picture4}, #{post_picture5}, #{post_picture6}, #{post_picture7}, #{post_picture8},
+      #{post_picture9})
+  </insert>
+  <select id="countNewPostprofile" parameterType="String" resultType="int">
+    select count(*) from postprofile where post_publishdt > #{_parameter}
+  </select>
+<!-- 获取最新10条数据-->
+  <select id="getNewPostProfilesByTime" parameterType="String" resultMap="PostProfileResult">
+    select * from PostProfile  where post_publishdt > #{_parameter} order by post_publishdt desc limit 10
+  </select>
+  <!-- 获取时间点后面的10条数据-->
+  <select id="getOldPostProfilesByTime" parameterType="String" resultMap="PostProfileResult">
+    select * from PostProfile where #{_parameter} > post_publishdt order by post_publishdt desc limit 10 
+  </select>
+  <!-- 检查id是否存在-->
+  <!-- 注意  where in (...) 里面的参数不能直接用 字符串加逗号分隔 来代替 -->
+  <select id="getExistedId" parameterType="java.util.List" resultType="int">
+      select post_id from PostProfile where post_id in (
+      	<foreach collection="list" item="item" separator=",">
+      	    #{item}
+      	</foreach>
+      )
+  </select>
+  <!-- 更新公告回复数-->
+  <update id="increaseReplyNum" parameterType="int">
+    update PostProfile set post_replynum = post_replynum + 1 where post_id = #{_parameter} 
+  </update>
+  
+</mapper>

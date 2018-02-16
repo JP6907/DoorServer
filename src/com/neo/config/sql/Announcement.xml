@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2009-2016 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 独一无二的空间名 -->
+<mapper namespace="Announcement">
+
+  <resultMap type="com.neo.bean.Announcement" id="AnnouncementResult">
+    <id column="ID" jdbcType="INTEGER" property="id"/>
+    <result column="CONTENT" jdbcType="VARCHAR" property="content"/>
+    <result column="DATE" jdbcType="VARCHAR" property="date"/>
+    <result column="TITLE" jdbcType="VARCHAR" property="title"/>
+  </resultMap>
+   <!-- 发布公告 -->
+  <insert id="addAnnouncement" parameterType="com.neo.bean.Announcement" useGeneratedKeys="true" keyProperty="id">
+      insert into announcement (TITLE, CONTENT, DATE) values(#{title}, #{content}, #{date})
+  </insert>
+	<!-- 获取所有公告 -->
+  <select id="getAnnouncementList" resultMap="AnnouncementResult">
+    select * from announcement where 1 = 1 
+  </select>
+  <select id="countNewPostprofile" parameterType="String" resultType="int">
+    select count(*) from announcement where date > #{_parameter}
+  </select>
+  <!-- 获取最新10条数据 -->
+  <select id="getNewAnnouncements" parameterType="String" resultMap="AnnouncementResult">
+    select * from announcement where date > #{_parameter} order by date desc limit 10
+  </select>
+  <!-- 获取时间点后面的10条数据-->
+  <select id="getOldAnnouncementsByTime" parameterType="String" resultMap="AnnouncementResult">
+    select * from announcement where #{_parameter} > date order by date desc limit 10 
+  </select>
+  <!-- 检查id是否存在-->
+  <!-- 注意  where in (...) 里面的参数不能直接用 字符串加逗号分隔 来代替 -->
+  <select id="getExistedId" parameterType="java.util.List" resultType="int">
+      select id from announcement where id in (
+      	<foreach collection="list" item="item" separator=",">
+      	    #{item}
+      	</foreach>
+      )
+  </select>
+  <!-- 删除单条公告 -->
+  <delete id="deleteOne" parameterType="int">
+      delete from announcement where ID = #{_parameter} 
+  </delete>
+  <!-- 批量删除公告 -->
+  <delete id="deleteBatch" parameterType="java.util.List">
+      delete from announcement where ID in (
+      	<foreach collection="list" item="item" separator=",">
+      	    #{item}
+      	</foreach>
+      )
+  </delete>
+  
+</mapper>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name></display-name>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.neo.server.LoginServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.neo.server.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateServlet</servlet-name>
+    <servlet-class>com.neo.server.UpdateServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UploadPicServlet</servlet-name>
+    <servlet-class>com.neo.server.UploadPicServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>OpenDoorByGprsServlet</servlet-name>
+    <servlet-class>com.neo.server.OpenDoorByGprsServlet</servlet-class>
+  </servlet>
+  <!-- 用户登陆 -->
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/servlet/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateServlet</servlet-name>
+    <url-pattern>/servlet/UpdateServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 用户注册 -->
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/servlet/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 上传头像 -->
+  <servlet-mapping>
+    <servlet-name>UploadPicServlet</servlet-name>
+    <url-pattern>/servlet/UploadPicServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OpenDoorByGprsServlet</servlet-name>
+    <url-pattern>/servlet/OpenDoorByGprsServlet</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- gprs 请求 -->
+  <servlet>
+    <description></description>
+    <display-name>GprsServlet</display-name>
+    <servlet-name>GprsServlet</servlet-name>
+    <servlet-class>com.neo.server.GprsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GprsServlet</servlet-name>
+    <url-pattern>/servlet/GprsServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 获取帖子数据 -->
+  <servlet>
+    <description></description>
+    <display-name>GetPostDataServlet</display-name>
+    <servlet-name>GetPostDataServlet</servlet-name>
+    <servlet-class>com.neo.server.GetPostDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetPostDataServlet</servlet-name>
+    <url-pattern>/servlet/GetPostDataServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 发布帖子 -->
+  <servlet>
+    <description></description>
+    <display-name>PostBbsServlet</display-name>
+    <servlet-name>PostBbsServlet</servlet-name>
+    <servlet-class>com.neo.server.PostBbsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostBbsServlet</servlet-name>
+    <url-pattern>/servlet/PostBbsServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 帖子回复 -->
+  <servlet>
+    <description></description>
+    <display-name>BbsReplyServlet</display-name>
+    <servlet-name>BbsReplyServlet</servlet-name>
+    <servlet-class>com.neo.server.BbsReplyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BbsReplyServlet</servlet-name>
+    <url-pattern>/servlet/BbsReplyServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 管理员账号登陆 -->
+  <servlet>
+    <description></description>
+    <display-name>ManagerLoginServlet</display-name>
+    <servlet-name>ManagerLoginServlet</servlet-name>
+    <servlet-class>com.manager.servlet.ManagerLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerLoginServlet</servlet-name>
+    <url-pattern>/managerLogin.action</url-pattern>
+  </servlet-mapping>
+  <!-- 发布公告 -->
+  <servlet>
+    <description></description>
+    <display-name>PublicAnnouncementServlet</display-name>
+    <servlet-name>PublicAnnouncementServlet</servlet-name>
+    <servlet-class>com.manager.servlet.PublicAnnouncementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PublicAnnouncementServlet</servlet-name>
+    <url-pattern>/publicAnnouncement.action</url-pattern>
+  </servlet-mapping>
+  <!-- 修改公告 -->
+  <servlet>
+    <description></description>
+    <display-name>FixAnnouncementServlet</display-name>
+    <servlet-name>FixAnnouncementServlet</servlet-name>
+    <servlet-class>com.manager.servlet.FixAnnouncementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FixAnnouncementServlet</servlet-name>
+    <url-pattern>/fixAnnouncement.action</url-pattern>
+  </servlet-mapping>
+  <!-- 获取公告列表 -->
+  <servlet>
+    <description></description>
+    <display-name>AnnouncementListServlet</display-name>
+    <servlet-name>AnnouncementListServlet</servlet-name>
+    <servlet-class>com.manager.servlet.AnnouncementListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnnouncementListServlet</servlet-name>
+    <url-pattern>/announcementList.action</url-pattern>
+  </servlet-mapping>
+  <!-- 管理员账号登出 -->
+  <servlet>
+    <description></description>
+    <display-name>ManagerLoginOutServlet</display-name>
+    <servlet-name>ManagerLoginOutServlet</servlet-name>
+    <servlet-class>com.manager.servlet.ManagerLoginOutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerLoginOutServlet</servlet-name>
+    <url-pattern>/loginOut.action</url-pattern>
+  </servlet-mapping>
+  <!-- 删除一条公告 -->
+  <servlet>
+    <description></description>
+    <display-name>DeleteOneAnnouncementServlet</display-name>
+    <servlet-name>DeleteOneAnnouncementServlet</servlet-name>
+    <servlet-class>com.manager.servlet.DeleteOneAnnouncementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteOneAnnouncementServlet</servlet-name>
+    <url-pattern>/deleteOne.action</url-pattern>
+  </servlet-mapping>
+  <!-- 批量删除公告 -->
+  <servlet>
+    <description></description>
+    <display-name>DeleteBatchAnnouncementServlet</display-name>
+    <servlet-name>DeleteBatchAnnouncementServlet</servlet-name>
+    <servlet-class>com.manager.servlet.DeleteBatchAnnouncementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteBatchAnnouncementServlet</servlet-name>
+    <url-pattern>/deleteBatch.action</url-pattern>
+  </servlet-mapping>
+  <!-- 获取公告信息 -->
+  <servlet>
+    <description></description>
+    <display-name>GetNoticeServlet</display-name>
+    <servlet-name>GetNoticeServlet</servlet-name>
+    <servlet-class>com.neo.server.GetNoticeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetNoticeServlet</servlet-name>
+    <url-pattern>/servlet/GetNoticeServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 获取公告回复 -->
+  <servlet>
+    <description></description>
+    <display-name>GetNoticeReplyServlet</display-name>
+    <servlet-name>GetNoticeReplyServlet</servlet-name>
+    <servlet-class>com.neo.server.GetNoticeReplyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetNoticeReplyServlet</servlet-name>
+    <url-pattern>/servlet/GetNoticeReplyServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 获取帖子回复数据 -->
+  <servlet>
+    <description></description>
+    <display-name>GetReplyDataServlet</display-name>
+    <servlet-name>GetReplyDataServlet</servlet-name>
+    <servlet-class>com.neo.server.GetReplyDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetReplyDataServlet</servlet-name>
+    <url-pattern>/servlet/GetReplyDataServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 获取好友信息 -->
+  <servlet>
+    <description></description>
+    <display-name>GetFriendServlet</display-name>
+    <servlet-name>GetFriendServlet</servlet-name>
+    <servlet-class>com.neo.server.GetFriendServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetFriendServlet</servlet-name>
+    <url-pattern>/servlet/GetFriendServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 查询用户信息 -->
+  <servlet>
+    <description></description>
+    <display-name>QueryUserServlet</display-name>
+    <servlet-name>QueryUserServlet</servlet-name>
+    <servlet-class>com.neo.server.QueryUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QueryUserServlet</servlet-name>
+    <url-pattern>/servlet/QueryUserServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 查询好友列表 -->
+  <servlet>
+    <description></description>
+    <display-name>QueryUserListServlet</display-name>
+    <servlet-name>QueryUserListServlet</servlet-name>
+    <servlet-class>com.neo.server.QueryUserListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QueryUserListServlet</servlet-name>
+    <url-pattern>/servlet/QueryUserListServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 找回密码 -->
+  <servlet>
+    <description></description>
+    <display-name>FindPasswordServlet</display-name>
+    <servlet-name>FindPasswordServlet</servlet-name>
+    <servlet-class>com.neo.server.FindPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindPasswordServlet</servlet-name>
+    <url-pattern>/servlet/FindPasswordServlet</url-pattern>
+  </servlet-mapping>
+  <!-- 登陆过滤器 -->
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>com.neo.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/announcementList.action</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>/publicAnnouncement.action</url-pattern>
+  </filter-mapping>
+</web-app>

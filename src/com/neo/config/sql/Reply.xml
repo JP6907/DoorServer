@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2009-2016 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 独一无二的空间名 -->
+<mapper namespace="Reply">
+
+  <resultMap type="com.neo.bean.Reply" id="ReplyResult">
+    <id column="REPLY_ID" jdbcType="INTEGER" property="reply_id"/>
+    <result column="REPLY_POSTID" jdbcType="INTEGER" property="reply_postid"/>
+    <result column="REPLY_JUDGE" jdbcType="INTEGER" property="reply_judge"/>
+    <result column="REPLY_DATETIME" jdbcType="VARCHAR" property="reply_datetime"/>
+    <result column="REPLY_RESPONDER" jdbcType="VARCHAR" property="reply_responder"/>
+    <result column="REPLY_PUBLISHER" jdbcType="VARCHAR" property="reply_publisher"/>
+    <result column="REPLY_FLOOR" jdbcType="INTEGER" property="reply_floor"/>
+    <result column="REPLY_TEXT" jdbcType="VARCHAR" property="reply_text"/>
+  </resultMap>
+   <!-- 添加公告回复 -->
+  <insert id="addReply" parameterType="com.neo.bean.Reply" useGeneratedKeys="true" keyProperty="reply_id">
+      insert into Reply (reply_postid, reply_judge, reply_datetime, reply_responder,
+      reply_publisher, reply_floor, reply_text) 
+      values(#{reply_postid}, #{reply_judge}, #{reply_datetime}, #{reply_responder},
+      #{reply_publisher}, #{reply_floor}, #{reply_text})
+  </insert>
+<!-- 根据公告id获取公告回复 -->
+  <select id="getReplys" parameterType="int" resultMap="ReplyResult">
+    select * from Reply where reply_postid = #{_parameter} 
+  </select>
+  
+</mapper>
